@@ -7,6 +7,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+
+/* Corrige overflow horizontal global - resolve scroll lateral indesejado no mobile */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden !important;  /* impede qualquer scroll lateral */
+}
+
+/* Garante que nada ultrapasse a tela */
+* {
+    box-sizing: border-box;  /* faz padding/margin não somar à largura */
+}
+
         :root {
             --roxo: #7a75b5;
             --laranja: #f58634;
@@ -28,6 +42,7 @@
             color: var(--preto);
             line-height: 1.6;
         }
+
 
         /* Utilitários */
         .container {
@@ -278,25 +293,147 @@ header nav a:hover {
     color: #d46d22 !important;  /* um tom mais escuro de laranja no hover, opcional */
     text-decoration: underline;
 }
+
+@media only screen and (max-width: 768px) {  /* ou o breakpoint que você usa */
+    .mobile-menu, .nav-menu, .sidebar-menu {  /* troque pelas classes reais */
+        width: 100vw !important;             /* ou 100% */
+        max-width: 100vw;
+        left: 0;
+        right: 0;
+        box-sizing: border-box;
+        overflow-x: hidden;                  /* evita overflow interno */
+    }
+
+    .mobile-menu ul, .nav-menu ul {
+        flex-direction: column;              /* força vertical */
+        align-items: flex-start;
+    }
+
+    .mobile-menu a, .nav-menu a {
+        white-space: normal;                 /* permite quebra de linha */
+        width: 100%;
+        padding: 15px 20px;                  /* ajuste padding pra caber */
+        box-sizing: border-box;
+    }
+
+    body.menu-open {                         /* se tiver classe no body quando aberto */
+        overflow: hidden;                    /* impede scroll da página atrás */
+    }
+/* ==========================================
+   Header / Menu corrigido
+========================================== */
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  flex-shrink: 0;
+}
+
+.menu-toggle {
+  display: none;                /* escondido no desktop */
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.main-nav {
+  display: block;
+}
+
+.main-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 2rem;
+}
+
+.main-nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.05rem;
+  transition: 0.3s;
+}
+
+.main-nav a:hover {
+  color: var(--amarelo);
+  text-decoration: underline;
+}
+
+.main-nav ul {
+  flex-wrap: wrap;          /* permite quebra de linha no mobile se necessário */
+  justify-content: flex-end;
+  gap: 1.5rem;
+}
+
+.main-nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.05rem;
+  white-space: nowrap;      /* evita quebra no meio da palavra */
+  transition: 0.3s;
+}
+
+.main-nav a:hover {
+  color: var(--amarelo);
+}
+
+/* Remove qualquer hambúrguer ou menu escondido */
+.menu-toggle {
+  display: none !important;
+}
+
+/* No mobile: diminui um pouco o tamanho e espaçamento se ficar apertado */
+@media (max-width: 768px) {
+  .main-nav ul {
+    gap: 1rem;
+    justify-content: center;   /* centraliza se quiser */
+  }
+  
+  .main-nav a {
+    font-size: 0.95rem;
+    padding: 0.5rem 0;
+  }
+  
+  .header-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+  }
+}
+}
         }
     </style>
 </head>
 <body>
 
-<header style="background: var(--roxo); color: white; padding: 0.8rem 5%; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
-  <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: nowrap; gap: 1.5rem;">
+
+<header style="background: var(--roxo); color: white; padding: 1rem 5%; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+  <div class="header-container" style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
     
-    <!-- Logo à esquerda -->
-    <a href="#home" style="flex-shrink: 0;">
+    <!-- Logo -->
+    <a href="#home" class="logo" style="flex-shrink: 0;">
       <img src="logo.png" alt="Crash Comunicação" style="height: 50px; width: auto; display: block;">
     </a>
     
-    <!-- Menu à direita - força visibilidade -->
-    <nav style="display: block !important;">
-      <ul style="list-style: none; display: flex; align-items: center; gap: 2rem; margin: 0; padding: 0; font-weight: 600; font-size: 1.05rem;">
-                <li><a href="#beneficios" style="color: white; text-decoration: none;">Benefícios</a></li>
-        <li><a href="#investimento" style="color: white; text-decoration: none;">Investimento</a></li>
-        <li><a href="#contato"   style="color: branco; text-decoration: none;">Contato</a></li>
+    <!-- Menu sempre visível -->
+    <nav class="main-nav">
+      <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: flex-end; align-items: center;">
+        <li><a href="#beneficios" style="color: white; text-decoration: none; font-weight: 600; font-size: 1.05rem;">Benefícios</a></li>
+        <li><a href="#investimento" style="color: white; text-decoration: none; font-weight: 600; font-size: 1.05rem;">Investimento</a></li>
+        <li><a href="#contato" style="color: white; text-decoration: none; font-weight: 600; font-size: 1.05rem;">Contato</a></li>
       </ul>
     </nav>
     
@@ -412,6 +549,39 @@ header nav a:hover {
             document.getElementById('modal-img').src = src;
         }
     </script>
+
+<script>
+  const menuToggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('.main-nav');
+  const body = document.body;
+
+  menuToggle.addEventListener('click', () => {
+    nav.classList.toggle('active');
+    body.classList.toggle('menu-open');
+    
+    // Troca ícone (opcional)
+    const icon = menuToggle.querySelector('i');
+    if (nav.classList.contains('active')) {
+      icon.classList.remove('fa-bars');
+      icon.classList.add('fa-times');
+    } else {
+      icon.classList.remove('fa-times');
+      icon.classList.add('fa-bars');
+    }
+  });
+
+  // Fecha menu ao clicar em link (ótimo para mobile)
+  document.querySelectorAll('.main-nav a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('active');
+      body.classList.remove('menu-open');
+      // reseta ícone
+      const icon = menuToggle.querySelector('i');
+      icon.classList.remove('fa-times');
+      icon.classList.add('fa-bars');
+    });
+  });
+</script>
 
 </body>
 </html>
