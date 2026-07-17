@@ -1,20 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-BTJ9XC5PWR"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-BTJ9XC5PWR');
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-mail Marketing | Crash Comunicação</title>
-    <link rel="icon" href="crashico373x593.png" type="image/png">
-    <link rel="apple-touch-icon" href="crashico373x593.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -90,15 +79,15 @@ html, body {
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        
+         
         } /* Simplificado para LP, pode adicionar se desejar */
 
-        /* Hero Section */
+        /* Hero Section - REDUZIDA */
         #home {
             background: linear-gradient(rgba(122, 117, 181, 0.9), rgba(122, 117, 181, 0.9)), url('news720x1280.jpg');
             background-size: cover;
             background-position: center;
-            min-height: 80vh;
+            min-height: 45vh; /* Diminuído de 80vh para 45vh */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -108,9 +97,44 @@ html, body {
         }
 
         #home h1 {
-            font-size: 2.5rem;
+            font-size: 2rem; /* Levemente reduzido para harmonia */
             font-weight: 800;
             margin-bottom: 1.5rem;
+        }
+
+        /* EFEITO FAIXA ROLANTE (TICKER ANIMADO) */
+        .faixa-rolante {
+            background: var(--laranja);
+            color: white;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 0.8rem 0;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .faixa-wrapper {
+            display: inline-block;
+            animation: rolar 25s linear infinite;
+            padding-left: 100%;
+        }
+
+        .faixa-wrapper span {
+            display: inline-block;
+            padding: 0 2rem;
+        }
+
+        .faixa-wrapper i {
+            color: var(--amarelo);
+            margin-right: 0.5rem;
+        }
+
+        @keyframes rolar {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
         }
 
         /* O que é */
@@ -287,7 +311,7 @@ html, body {
             }
 
             #home h1 {
-                font-size: 4rem;
+                font-size: 3rem; /* Ajustado de 4rem para combinar com a sessão menor */
                 max-width: 800px;
             }
 
@@ -458,13 +482,41 @@ header nav a:hover {
         </div>
     </section>
 
+    <!-- NOVA FAIXA ROLANTE ANIMADA -->
+    <div class="faixa-rolante">
+        <div class="faixa-wrapper">
+            <span><i class="fas fa-bolt"></i> Receita Recorrente</span>
+            <span><i class="fas fa-bolt"></i> Engajamento</span>
+            <span><i class="fas fa-bolt"></i> Automação</span>
+            <span><i class="fas fa-bolt"></i> Fidelização</span>
+            <span><i class="fas fa-bolt"></i> Alto ROI</span>
+            <span><i class="fas fa-bolt"></i> Newsletters</span>
+            <span><i class="fas fa-bolt"></i> Segmentação</span>
+            <span><i class="fas fa-bolt"></i> Conversão</span>
+            <!-- Repetição dos termos para garantir o loop contínuo sem cortes -->
+            <span><i class="fas fa-bolt"></i> Receita Recorrente</span>
+            <span><i class="fas fa-bolt"></i> Engajamento</span>
+            <span><i class="fas fa-bolt"></i> Automação</span>
+            <span><i class="fas fa-bolt"></i> Fidelização</span>
+            <span><i class="fas fa-bolt"></i> Alto ROI</span>
+            <span><i class="fas fa-bolt"></i> Newsletters</span>
+            <span><i class="fas fa-bolt"></i> Segmentação</span>
+            <span><i class="fas fa-bolt"></i> Conversão</span>
+        </div>
+    </div>
+
     <section id="o-que-e">
         <div class="container">
             <h2>O que é E-mail Marketing e por que ele é eficiente?</h2>
             <div class="content-grid">
                 <br>
                 <p>E-mail Marketing é o envio estratégico de mensagens comerciais diretamente para a caixa de entrada do seu cliente ideal — newsletters, promoções, lembretes de aniversário, sequência de boas-vindas, conteúdos informativos, educativos e muito mais.</p>
-                <img src="redessociais960x960.jpg" alt="E-mail Estratégico" style="width: 100%; border-radius: 20px;">
+                
+                <!-- FOTONA DIMINUÍDA E CENTRALIZADA -->
+                <div style="text-align: center; width: 100%;">
+                    <img src="redessociais960x960.jpg" alt="E-mail Estratégico" style="width: 100%; max-width: 450px; height: auto; border-radius: 20px; display: inline-block;">
+                </div>
+
                 <p>Diferente de anúncios no Instagram ou Google que desaparecem em segundos, o e-mail fica na caixa do cliente. Ele pode abrir hoje, amanhã ou na próxima semana — e ainda converte quando a pessoa está pronta para comprar.</p>
                 <div class="destaque-box">
                     <p><strong>Na Crash Comunicação, não fazemos “disparo em massa”. Fazemos comunicação que constrói relacionamento e gera receita recorrente.</strong></p>
@@ -524,7 +576,7 @@ header nav a:hover {
     <section id="exemplos">
         <div class="container">
             <h2>Anúncios desaparecem. E-mails ficam — e convertem com menos investimento. </h2>
-            <p>Clique nas artes para ampliar</p>
+            <p>Clique das artes para ampliar</p>
             <div class="gallery">
                 <img src="emktestetica.png" alt="Exemplo 1" onclick="openModal(this.src)">
                 <img src="emktoficina.jpg" alt="Exemplo 2" onclick="openModal(this.src)">
@@ -546,9 +598,9 @@ header nav a:hover {
         </div>
     </section>
 
-   <footer>
-    <p>2026 <a href="https://crashcom.com.br" target="_blank" rel="noopener noreferrer">Crash Comunicação</a></p>
-</footer>
+    <footer>
+        <p>© 2026 Crash Comunicação.</p>
+    </footer>
 
     <div id="modal" onclick="this.style.display='none'">
         <img id="modal-img" src="" alt="Ampliado">
@@ -595,11 +647,4 @@ header nav a:hover {
 </script>
 
 </body>
-
 </html>
-
-
-
-
-
-
